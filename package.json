@@ -1,0 +1,66 @@
+{
+  "name": "rasathane-ai",
+  "version": "0.1.0",
+  "description": "Local-first Windows desktop MVP using Electron, React, TypeScript, and Vite.",
+  "main": "dist-electron/main/index.js",
+  "scripts": {
+    "dev:renderer": "vite",
+    "dev:electron": "tsc -p tsconfig.node.json --watch --preserveWatchOutput",
+    "dev:app": "cross-env VITE_DEV_SERVER_URL=http://localhost:5173 wait-on http://localhost:5173 file:dist-electron/main/index.js && electron .",
+    "dev": "concurrently -k \"npm:dev:renderer\" \"npm:dev:electron\" \"npm:dev:app\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.node.json --noEmit",
+    "build:renderer": "vite build",
+    "build:electron": "tsc -p tsconfig.node.json",
+    "build": "npm run typecheck && npm run build:renderer && npm run build:electron",
+    "electron:build": "npm run build && electron-builder",
+    "smoke": "npm run build && cross-env RASATHANE_SMOKE_TEST=1 electron ."
+  },
+  "keywords": [
+    "electron",
+    "react",
+    "vite",
+    "ollama",
+    "local-ai"
+  ],
+  "author": "Selim local AI benchmark",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sql.js": "^1.14.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "concurrently": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.rasathane.ai",
+    "productName": "Rasathane AI",
+    "directories": {
+      "output": "release-builds"
+    },
+    "files": [
+      "dist/renderer/**/*",
+      "dist-electron/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/sql.js/dist/*.wasm"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  }
+}

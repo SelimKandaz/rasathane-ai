@@ -1,0 +1,38 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+dist-electron/
+release-builds/
+out/
+
+# logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# private/local runtime state
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+
+# private Rasathane run artifacts
+reports/
+datasets/
+tools/*.ps1
+tools/downloads/
+tools/whisper.cpp/
+config/*.local.json
+config/*.proposed.json
+config/*.private.json
+config/*.Modelfile
+
+# temp / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.tsbuildinfo

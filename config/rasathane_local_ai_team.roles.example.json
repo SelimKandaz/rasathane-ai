@@ -1,0 +1,30 @@
+{
+  "version": "example",
+  "description": "Sanitized local role assignment example for Rasathane AI. Copy to a local/private config before editing.",
+  "ollama_endpoint": "http://127.0.0.1:11434",
+  "roles": {
+    "text_brain": {
+      "purpose": "Reasoning, guidance, project memory, next steps, and coding advice.",
+      "model": "your-local-text-model"
+    },
+    "vision_eyes": {
+      "purpose": "Screenshot reading, UI summary, error message extraction, and visible-state description.",
+      "model": "your-local-vision-model"
+    },
+    "reviewer": {
+      "purpose": "Safety review, output review, and route checking.",
+      "model": "your-local-review-model"
+    },
+    "associate_professor": {
+      "purpose": "Memory-aware final report authority and route decision support.",
+      "model": "your-local-reasoning-model"
+    }
+  },
+  "boundaries": {
+    "no_cloud_ai": true,
+    "no_api_keys": true,
+    "no_autonomous_os_control": true,
+    "no_terminal_execution": true,
+    "no_file_deletion": true
+  }
+}
